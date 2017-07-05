@@ -23,7 +23,7 @@ args_3 =  sys.argv[3][1:]  # flagged_purchases
 user_record = dict()
 
 '''
-user_record : = is dictionary holds user_id and the connections
+user_record : = is dictionary holds user_id and the connections.
 '''
 
 # ledger
@@ -33,7 +33,7 @@ ledger = dict()
 '''
 ledger keeps a record of all the transaction. it is a dictionary containing dictionary of history transactions of users
 in a list. I have created variable  transaction_id to understand the order of transaction's, it will be incremented for
-every financial transactions
+every financial transactions.
 '''
 transaction_id = 0
 
@@ -89,10 +89,10 @@ dictonary.
 
 '''
 rise_event() is to classify what kind of even has be arised form the batch_log and stream files.
- p: purchase
- b: befriend
- u: unfriend
- '''
+p: purchase
+b: befriend
+u: unfriend
+'''
 def rise_event(dict_temp):
     if dict_temp['event_type'][0] == 'p':
         return 'p'
@@ -104,8 +104,7 @@ def rise_event(dict_temp):
 
 '''
 befriend(), adds friends, it is made sure friendships are bidirectional
-measure is taken that we add someone as friend only when one is not a friend
-
+measure is taken that we add someone as friend only when one is not a friend.
 '''
 
 
@@ -132,8 +131,8 @@ def befriend(dict_temp):
 
 '''
 opposite of befriend(), removes friends from list, again its bidirectional and should be perfomed only when people
-are already friend's
- '''
+are already friend's.
+'''
 
 def unfriend(dict_temp):
     friends_list = list(user_record[dict_temp['id1']])
@@ -149,10 +148,9 @@ def unfriend(dict_temp):
 
 '''
 purchase() function adds transactions to the ledger, ledger has records of every user.
+each  transaction amount  is coupled with transaction id.
 
-each  transaction amount  is coupled with transaction id
-
- example of structure of ledger
+example of structure of ledger:
 
 ledger : =  {'1':{'2017-06-14 18:46:40': [[68.92, 13000], [106.23, 30145], [77.3, 32143]]},
 '2':{'2017-06-15 11:46:40': [[62.91, 13023], [1012.22, 30145], [77.3, 32143]]}}
@@ -212,7 +210,7 @@ transaction_id = read_every_line(transaction_id)
 
 
 '''
-get_network() will return all the connections with specified degree
+get_network() will return all the connections with specified degree.
 '''
 def get_network(D,user_id):
     d_temp = 2
@@ -236,7 +234,7 @@ def get_network(D,user_id):
 '''
 will return the transaction history of a particular network.
 the goal is to get last T number transactions in a network. If we dont have 50 transactions in a network,
-will take the maximum number of transations that took place in that network
+will take the maximum number of transations that took place in that network.
 '''
 def get_network_history(network_list, date_purchase, T ):
     network_transaction_history = []
@@ -272,14 +270,12 @@ def calcualtion(T_records):
 
 '''
 this function does everything the purchase() function does while building initial state of the system and on top
-that they are other operations it will perform to handle stream of transactions that is to declare anomaly
+that they are other operations it will perform to handle stream of transactions that is to declare anomaly.
 
-this is the section that will perform the intented goal of this challenge
+this is the section that will perform the intented goal of this challenge.
 
 I faced issue while saving the data in json file, the test throwed an error because my responses are not in right order
-even if they are correct, so I used OrderedDict() to preserve the the order of data in dict and later saved to Json file
-
-
+even if they are correct, so I used OrderedDict() to preserve the the order of data in dict and later saved to Json file.
 '''
 def purchase_stream(dict_temp, transaction_id):
     import collections
@@ -314,10 +310,8 @@ def purchase_stream(dict_temp, transaction_id):
 
 
 '''
-
 this is the function that will handle the stream of data, its similar the other other function with
 minor modification's.
-
 '''
 
 def read_every_line_stream(transaction_id,stream_log):
