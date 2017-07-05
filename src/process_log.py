@@ -136,7 +136,6 @@ are already friend's
  '''
 
 def unfriend(dict_temp):
-
     friends_list = list(user_record[dict_temp['id1']])
     if dict_temp['id2'] in friends_list:
         friends_list.remove(dict_temp['id2'])
