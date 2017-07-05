@@ -58,7 +58,7 @@ def get_D_T(batch_log):
     T = int(jason_line_dict['T'])
     return D,T, batch_log
 
-#  this is to read each line from stream_log
+#  this is to read each line from stream_log.
 def read_line_steam_log(stream_log):
     file = str(stream_log.readline())
     temp = str(file)
@@ -70,7 +70,7 @@ def read_line_steam_log(stream_log):
 D, T, batch_log= get_D_T(batch_log) # get values of D,T, batch_log
 
 
-# we are reading each line  we are do iteratively until we reach the end of the file
+# we are reading each line  we are do iteratively until we reach the end of the file.
 def log_read_line(log):
     file = str(log.readline())
     temp = str(file)
@@ -181,7 +181,7 @@ def purchase(dict_temp,transaction_id):
     return transaction_id
 
 
-# wish function is what will  pulls all  everything to build inital state of the network
+# wish function is what will  pulls all  everything to build inital state of the network.
 def read_every_line(transaction_id):
     temp = 'not-empty'
     while temp != '' :
@@ -202,7 +202,7 @@ def read_every_line(transaction_id):
 
 
 
-#calling the function to read every line form bath_log.json
+# calling the function to read every line form bath_log.json.
 transaction_id = read_every_line(transaction_id)
 
 
@@ -259,7 +259,7 @@ def get_network_history(network_list, date_purchase, T ):
     return network_transaction_history
 
 
-# function to calculate mean and standard deviation
+# function to calculate mean and standard deviation.
 
 def calcualtion(T_records):
     mean =  sum(T_records)/ len(T_records)
