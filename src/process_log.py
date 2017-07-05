@@ -227,30 +227,7 @@ def purchase_stream(dict_temp, transaction_id,file_counter):
     date_purchase =datetime.datetime.strptime( date_purchase,'%Y-%m-%d %H:%M:%S') # convert to Date-time
     date_purchase = datetime.datetime.strftime( date_purchase, '%Y-%m-%d %H:%M:%S') # convert to string
     amount = float( dict_temp['amount'])
-
-    try:
-        billing_history= list(ledger[dict_temp['id']])
-        if date_purchase  in billing_history:
-            #bill_for_the_day.append(dict_temp['id2'])
-            #user_record.setdefault(dict_temp['id1'],[]).append(dict_temp['id2'])
-            billing_history = ledger[dict_temp['id']]
-            bill_for_the_day = billing_history[date_purchase]
-            billing_history.setdefault(date_purchase,bill_for_the_day).append([amount,transaction_id])
-            ledger[dict_temp['id']] = billing_history
-            #print('created new bill date')
-        else:
-            billing_history = ledger[dict_temp['id']]
-            billing_history.setdefault(date_purchase,[]).append([amount,transaction_id])
-            ledger[dict_temp['id']] = billing_history
-            #print("added to exesting record")
-
-    except KeyError:
-        # create new record
-        #billing_history[date_purchase] = bill_for_the_day.append(float( amount ))
-        billing_history.setdefault(date_purchase,[]).append([amount,transaction_id])
-        ledger[dict_temp['id']] = billing_history
-        #print("create new record")
-    #return transaction_id
+    transaction_id = purchase(dict_temp,transaction_id)
 
     ######
     network_list = get_network(D, user_id)
@@ -279,6 +256,7 @@ def purchase_stream(dict_temp, transaction_id,file_counter):
 def read_every_line_stream(transaction_id,stream_log):
     temp = 'not-empty'
     file_counter=0
+
     while temp !='':
         temp  = str(stream_log.readline())
         temp=str(temp)
