@@ -38,6 +38,7 @@ every financial transactions.
 transaction_id = 0
 
 # loading file paths
+
 path = os.getcwd()
 path_sample_batch_log = path + args_1
 path_sample_stream_log = path + args_2
@@ -48,6 +49,7 @@ stream_log = open(path_sample_stream_log)
 
 
 # when reading the batch long for the first time we need to take D AND T AS INPUTS
+
 def get_D_T(batch_log):
     file = str(batch_log.readline())
     temp = str(file)
@@ -71,6 +73,7 @@ D, T, batch_log= get_D_T(batch_log) # get values of D,T, batch_log
 
 
 # we are reading each line  we are do iteratively until we reach the end of the file.
+
 def log_read_line(log):
     file = str(log.readline())
     temp = str(file)
@@ -93,6 +96,7 @@ p: purchase
 b: befriend
 u: unfriend
 '''
+
 def rise_event(dict_temp):
     if dict_temp['event_type'][0] == 'p':
         return 'p'
@@ -212,6 +216,7 @@ transaction_id = read_every_line(transaction_id)
 '''
 get_network() will return all the connections with specified degree.
 '''
+
 def get_network(D,user_id):
     d_temp = 2
     network_list = list(user_record[user_id])
@@ -236,6 +241,7 @@ will return the transaction history of a particular network.
 the goal is to get last T number transactions in a network. If we dont have 50 transactions in a network,
 will take the maximum number of transations that took place in that network.
 '''
+
 def get_network_history(network_list, date_purchase, T ):
     network_transaction_history = []
     net_transactions = []
@@ -277,6 +283,7 @@ this is the section that will perform the intented goal of this challenge.
 I faced issue while saving the data in json file, the test throwed an error because my responses are not in right order
 even if they are correct, so I used OrderedDict() to preserve the the order of data in dict and later saved to Json file.
 '''
+
 def purchase_stream(dict_temp, transaction_id):
     import collections
     dict_temp_o = collections.OrderedDict()
